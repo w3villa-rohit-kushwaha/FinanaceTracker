@@ -1,0 +1,29 @@
+<table class="table table-bordered stock-details-table">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Company Name</th>
+      <th>Last Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @stock.ticker %></td>
+      <td><%= @stock.name %></td>
+      <td><%= @stock.last_price %> $</td>
+      <td>
+        <% if current_user.can_track_stock?(@stock.ticker) %>
+          <%= link_to 'Add to portfolio', user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-sm btn-success", method: :post, data: { turbo_method: :post } %>
+        <% else %>
+          <% if !current_user.under_stock_limit? %>
+            <span class=" custum_color ">10 stocks limit exeeded</span>
+          <% end %>
+          <% if current_user.stock_already_tracked?(@stock.ticker) %>
+            <span class=" custum_color ">You are already tracking this stock</span>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<% if @friends %>
+  <div class="card card-header results-block">
+    <% @friends.each do |friend| %>
+      <strong>Email: </strong> <%= friend.first_name %><%= friend.last_name %>
+      <strong>Name: </strong> <%= friend.email %>
+      <strong>Profile: </strong> <%= link_to 'View Profile', user_path(friend), class: "btn btn-sm btn-success" %>
+      <% if current_user.not_friends_with(friend.id) %>
+        <%= link_to 'Follow friend', friendships_path(friend: friend.id), class: "btn btn-sm btn-success", method: :post, data: { turbo_method: :post } %>
+      <% else %>
+        You are already friends
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

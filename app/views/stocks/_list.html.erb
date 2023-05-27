@@ -1,0 +1,23 @@
+  <div id="tracked-stocks-section">
+    <h3 class= "tracked-stocks">Tracked Stocks</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Stock Name</th>
+          <th>Ticker</th>
+          <th>Last Price</th>
+          <th>Action </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tracked_stocks.each do |tracked_stock| %>
+          <tr>
+            <td><%= tracked_stock.name %></td>
+            <td><%= tracked_stock.ticker %></td>
+            <td><%= tracked_stock.last_price %></td>
+             <td> <%= link_to 'Remove', user_stock_path(tracked_stock), method: :delete, data: { turbo_method: :delete }, class: 'btn btn-sm btn-warning' %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

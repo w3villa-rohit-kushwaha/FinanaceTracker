@@ -1,0 +1,25 @@
+
+<div class = "container">
+<h1 class = "card-heading">My Portfolio</h1>
+
+<div class='search-area'>
+  <h3 style="text-shadow: 1px 1px; margin-bottom:12px; padding-left:5px;">Search Stocks</h3>
+  <%= form_tag search_stock_path, method: :get do %>
+    <div class="form-group row">
+      <div class="col-sm-9 no-right-padding portfolio-search">
+        <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-lg" %>
+      </div>
+      <div class="col-sm-3">
+        <%= submit_tag "Search", class: "btn btn-success btn-lg" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if @stock.present? %>
+<%= render 'users/result'  %>
+<% end %>
+<% if @tracked_stocks.present? %>
+<%= render 'stocks/list'  %>
+<% end %>
+</div>

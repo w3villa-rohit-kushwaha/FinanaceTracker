@@ -1,0 +1,20 @@
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>first Name</th>
+        <th>last name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friends.each do |friends| %>
+        <tr>
+          <td><%= friends.email %></td>
+          <td><%= friends.first_name %></td>
+          <td><%= friends.last_name %></td>
+          <td>  <strong>Profile: </strong> <%= link_to 'View Profile', user_path(friends), class: "btn btn-sm btn-success" %></td>
+          <td> <%= link_to 'Stop following', friendship_path(friends), method: :delete, data: { turbo_method: :delete }, class: 'btn btn-sm btn-warning' %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
