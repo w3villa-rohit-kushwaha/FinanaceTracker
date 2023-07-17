@@ -1,6 +1,7 @@
 require 'finnhub_ruby'
 
 class Stock < ApplicationRecord
+  attr_accessor :ticker_symbol
   has_many :user_stocks
   has_many :users, through: :user_stocks
 
